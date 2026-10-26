@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node smoke.mjs",
+    "test:live": "node smoke.mjs --live",
+    "build:debug": "vite build --minify false --outDir dist-debug"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

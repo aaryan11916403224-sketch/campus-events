@@ -4,7 +4,37 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --color-page: #f7f3ec;
+  --color-page-deep: #eee6d8;
+  --color-surface: #fffdf9;
+  --color-ink: #221e1b;
+  --color-ink-soft: #6b6257;
+  --color-line: #e4d9c7;
+  --color-accent: #146b52;
+  --color-accent-bright: #1a8a68;
+  --color-accent-soft: #e2eee6;
+  --color-amber: #b45309;
+  --color-amber-soft: #f7e8cf;
+  --color-danger: #a5322a;
+  --color-danger-soft: #f6e0dc;
+}
+
+.dark {
+  --color-page: #181611;
+  --color-page-deep: #211e17;
+  --color-surface: #221f19;
+  --color-ink: #f2ede3;
+  --color-ink-soft: #b3a795;
+  --color-line: #3a352c;
+  --color-accent: #5cb889;
+  --color-accent-bright: #6dc99a;
+  --color-accent-soft: #24352b;
+  --color-amber: #e0a45c;
+  --color-amber-soft: #3a2c16;
+  --color-danger: #e5867c;
+  --color-danger-soft: #3c221e;
 }
 
 html {
@@ -12,60 +42,86 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-100;
+  background-color: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* paper grain — keeps the UI from feeling like flat generated output */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  @apply bg-indigo-500/30;
+  background: var(--color-amber-soft);
+  color: var(--color-ink);
+}
+
+.blob {
+  border-radius: 43% 57% 62% 38% / 45% 39% 61% 55%;
 }
 
 .cover {
-  @apply relative flex h-40 items-end overflow-hidden p-4;
-}
-
-.cover-hackathon {
-  background-image: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-}
-
-.cover-workshop {
-  background-image: linear-gradient(135deg, #0ea5e9 0%, #6366f1 60%, #8b5cf6 100%);
-}
-
-.cover-competition {
-  background-image: linear-gradient(135deg, #f97316 0%, #ef4444 55%, #db2777 100%);
-}
-
-.cover-expo {
-  background-image: linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #06b6d4 100%);
-}
-
-.cover-summit {
-  background-image: linear-gradient(135deg, #8b5cf6 0%, #6366f1 55%, #3b82f6 100%);
-}
-
-.cover-gaming {
-  background-image: linear-gradient(135deg, #f43f5e 0%, #d946ef 55%, #7c3aed 100%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 1rem;
 }
 
 .cover::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.25), transparent 45%),
-    radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.12), transparent 40%);
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.22'%3E%3Cpath d='M-4 40 Q12 28 28 40 T60 40 T92 40'/%3E%3Cpath d='M-4 56 Q12 44 28 56 T60 56 T92 56'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.cover-emoji {
-  position: relative;
-  font-size: 3.25rem;
-  line-height: 1;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+.cover-hackathon {
+  background-image: linear-gradient(150deg, #146b52 0%, #2f8f6d 55%, #7bb08a 100%);
+}
+
+.cover-workshop {
+  background-image: linear-gradient(150deg, #b45309 0%, #d68b3c 55%, #e8c07a 100%);
+}
+
+.cover-competition {
+  background-image: linear-gradient(150deg, #9c3d2e 0%, #c4614a 55%, #dd9a7c 100%);
+}
+
+.cover-expo {
+  background-image: linear-gradient(150deg, #3f6d4e 0%, #6a9a6b 55%, #b7c98f 100%);
+}
+
+.cover-summit {
+  background-image: linear-gradient(150deg, #4a4e7c 0%, #6f6f9e 55%, #b3a4c4 100%);
+}
+
+.cover-gaming {
+  background-image: linear-gradient(150deg, #6d3355 0%, #9a4f76 55%, #c98fa8 100%);
+}
+
+mark {
+  background-color: var(--color-amber-soft);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.dark mark {
+  background-color: color-mix(in srgb, var(--color-amber) 45%, transparent);
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -85,7 +141,7 @@ body {
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.97);
+    transform: translateY(14px) scale(0.98);
   }
   to {
     opacity: 1;
@@ -93,8 +149,17 @@ body {
   }
 }
 
+@keyframes draw-check {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .anim-fade-up {
-  animation: fade-up 0.5s ease both;
+  animation: fade-up 0.55s ease both;
 }
 
 .anim-fade-in {
@@ -102,9 +167,26 @@ body {
 }
 
 .anim-pop-in {
-  animation: pop-in 0.32s cubic-bezier(0.21, 1.02, 0.73, 1) both;
+  animation: pop-in 0.3s cubic-bezier(0.21, 1.02, 0.73, 1) both;
+}
+
+.anim-check path {
+  stroke-dasharray: 48;
+  animation: draw-check 0.5s 0.15s ease both;
 }
 
 .skeleton {
-  @apply animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800;
+  border-radius: 12px;
+  background: linear-gradient(90deg, var(--color-line) 25%, var(--color-page-deep) 50%, var(--color-line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
