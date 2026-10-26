@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-100;
+}
+
+::selection {
+  @apply bg-indigo-500/30;
+}
+
+.cover {
+  @apply relative flex h-40 items-end overflow-hidden p-4;
+}
+
+.cover-hackathon {
+  background-image: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+}
+
+.cover-workshop {
+  background-image: linear-gradient(135deg, #0ea5e9 0%, #6366f1 60%, #8b5cf6 100%);
+}
+
+.cover-competition {
+  background-image: linear-gradient(135deg, #f97316 0%, #ef4444 55%, #db2777 100%);
+}
+
+.cover-expo {
+  background-image: linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #06b6d4 100%);
+}
+
+.cover-summit {
+  background-image: linear-gradient(135deg, #8b5cf6 0%, #6366f1 55%, #3b82f6 100%);
+}
+
+.cover-gaming {
+  background-image: linear-gradient(135deg, #f43f5e 0%, #d946ef 55%, #7c3aed 100%);
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.25), transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.12), transparent 40%);
+}
+
+.cover-emoji {
+  position: relative;
+  font-size: 3.25rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up 0.5s ease both;
+}
+
+.anim-fade-in {
+  animation: fade-in 0.3s ease both;
+}
+
+.anim-pop-in {
+  animation: pop-in 0.32s cubic-bezier(0.21, 1.02, 0.73, 1) both;
+}
+
+.skeleton {
+  @apply animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800;
+}
