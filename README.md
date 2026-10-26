@@ -4,6 +4,8 @@ A responsive event-discovery website where students browse upcoming college even
 
 **Domain:** Frontend · **Built with:** React 19 + Vite + Tailwind CSS v4
 
+**Live site:** https://aaryan11916403224-sketch.github.io/campus-events/
+
 ---
 
 ## What this project does
@@ -39,11 +41,11 @@ npm install
 
 # 2. Start the dev server
 npm run dev
-# → http://localhost:5173
+# → http://localhost:5173/campus-events/
 
 # 3. Production build
 npm run build
-npm run preview   # serve the dist/ folder locally
+npm run preview   # serve the build locally
 ```
 
 ## Project structure
