@@ -4,7 +4,8 @@ A responsive event-discovery website where students browse upcoming college even
 
 **Domain:** Frontend · **Built with:** React 19 + Vite + Tailwind CSS v4
 
-**Live site:** https://aaryan11916403224-sketch.github.io/campus-events/
+**Live site (Vercel):** https://campus-events-theta.vercel.app
+**Live site (GitHub Pages):** https://aaryan11916403224-sketch.github.io/campus-events/
 
 ---
 
