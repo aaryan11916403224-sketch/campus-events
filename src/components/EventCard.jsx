@@ -1,3 +1,5 @@
+import { formatDate } from '../utils/date'
+
 export default function EventCard({ event, index, isBookmarked, onToggleBookmark, onOpen }) {
   return (
     <article
