@@ -2,8 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { JSDOM } from 'jsdom'
 
-const LIVE_BASE = 'https://aaryan11916403224-sketch.github.io/campus-events/'
-const live = process.argv.includes('--live')
+const urlArgIndex = process.argv.indexOf('--url')
+const LIVE_BASE = urlArgIndex !== -1 ? process.argv[urlArgIndex + 1] : 'https://aaryan11916403224-sketch.github.io/campus-events/'
+const live = process.argv.includes('--live') || urlArgIndex !== -1
 
 async function loadAssets() {
   if (live) {
