@@ -26,9 +26,10 @@ function bootApp({ html, js, baseUrl, failFetch = false }) {
   window.matchMedia = window.matchMedia || ((q) => ({ matches: false, media: q, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {}, dispatchEvent() { return false } }))
 
   let fail = failFetch
-  window.fetch = async (url) => {
+  window.fetch = async (url, init) => {
+    if (fail) return { ok: false, status: 500, json: async () => ({}) }
+    if (live) return globalThis.fetch(new URL(String(url), baseUrl), init)
     if (String(url).includes('events.json')) {
-      if (fail) return { ok: false, status: 500, json: async () => ({}) }
       const data = fs.readFileSync('public/data/events.json', 'utf8')
       return { ok: true, status: 200, json: async () => JSON.parse(data) }
     }
@@ -91,7 +92,7 @@ console.log(`\nSmoke suite — ${live ? 'LIVE site' : 'local dist-debug build'}\
 await test('discover screen renders hero, featured and event cards', async () => {
   await waitFor(() => bodyText().includes('Upcoming events'), 'discover heading missing')
   assert(bodyText().includes('Find your'), 'hero headline missing')
-  assert($$('#events article').length >= 4, `expected event cards, found ${$$('#events article').length}`)
+  await waitFor(() => $$('#events article').length >= 4, `expected event cards, found ${$$('#events article').length}`)
 })
 
 await test('search matches multi-word queries ("code rush" finds CodeRush)', async () => {
